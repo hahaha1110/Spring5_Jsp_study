@@ -1,9 +1,13 @@
 package org.zerock.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.zerock.domain.SampleDTO;
 
 import lombok.extern.log4j.Log4j;
@@ -35,4 +39,24 @@ public class SampleController {
 		return "ex01";
 	}
 	
+	// 기본 자료형이나 문자열 등을 이용한다면 DTO 아니고 파라미터의 타입만 맞게 선정하는 방식 사용 가능
+	@GetMapping("/ex02")
+	public String ex02(@RequestParam("name") String name, @RequestParam("age") int age) {
+		log.info("name : " + name);
+		log.info("age : " + age);
+		
+		return "ex02";
+	}
+	
+	@GetMapping("/ex02List")
+	public String ex02List(@RequestParam("ids") ArrayList<String> ids) {
+		log.info("ids : " + ids);
+		return "ex02List";
+	}
+	
+	@GetMapping("/ex02Array")
+	public String ex02Array(@RequestParam("ids") String[] ids) {
+		log.info("array ids : " + Arrays.toString(ids));
+		return "ex02Array";
+	}
 }
